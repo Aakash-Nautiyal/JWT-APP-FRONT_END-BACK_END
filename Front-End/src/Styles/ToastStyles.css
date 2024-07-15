@@ -1,0 +1,42 @@
+/* ToastStyles.css */
+
+.Toastify__toast-container {
+  padding: 10px;
+  width: 300px; /* Adjust width as needed */
+}
+
+.Toastify__toast--success {
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.Toastify__toast--error {
+  background-color: #000000;
+  color: #ff0000;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.Toastify__close-button {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px; /* Adjust font size as needed */
+  width: 20px; /* Adjust width of close button */
+  background-color: transparent !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #ffffff; /* Green progress bar for success */
+  height: 4px; /* Adjust height of progress bar */
+}
+
+.Toastify__progress-bar--error {
+  background: #ff0000; /* Red progress bar for error */
+  height: 4px; /* Adjust height of progress bar */
+}

@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+}
+
+nav {
+  background-color: transparent; /* Transparent background */
+  padding: 10px 20px; /* Padding around the navigation links */
+  border-radius: 5px; /* Rounded corners */
+  position: fixed; /* Fixed position */
+  top: 0; /* Align to the top of the screen */
+  right: 0; /* Align to the right of the screen */
+  z-index: 100; /* Ensure nav bar stays above other content */
+}
+
+nav ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Flexbox layout for horizontal navigation */
+}
+
+nav ul li {
+  margin-right: 10px; /* Space between navigation items */
+}
+
+nav ul li a {
+  color: white; /* White text color */
+  text-decoration: none; /* Remove underline from links */
+  padding: 8px 12px; /* Padding inside each link */
+  border-radius: 3px; /* Rounded corners for links */
+  display: flex; /* Flexbox layout for icon and text */
+  align-items: center; /* Align items vertically */
+}
+
+nav ul li a:hover {
+  background-color: rgba(0, 123, 255, 0.2); /* Semi-transparent blue background on hover */
+}
+
+.hello-container {
+  margin-top: 100px; /* Adjust this margin as needed */
+  text-align: center; /* Center align content */
+  position: relative; /* Relative position for z-index to work */
+  z-index: 1; /* Ensure content is above the nav bar */
+}
+
+.hello-container h1 {
+  font-size: 3rem; /* Larger font size for heading */
+  color: #333; /* Text color */
+  font-weight: bold; /* Bold font weight */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Text shadow for depth */
+}
+
+.hello-container p {
+  font-size: 1.5rem; /* Font size for paragraph */
+  color: #666; /* Text color */
+  font-weight: bold; /* Bold font weight */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+  margin-top: 10px; /* Space above paragraph */
+}
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.typed-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: .15em solid black;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
