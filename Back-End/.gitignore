@@ -1,0 +1,44 @@
+# Java compiled class files
+*.class
+
+# Maven target directory
+/target/
+
+# IntelliJ IDEA files
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Gitignore for sensitive config (if any)
+application-*.properties
+application-*.yml
+
+# VS Code
+.vscode/
+
+# Build output
+*.jar
+*.war
+*.ear
+
+# Node stuff (if fullstack in same repo)
+node_modules/
+dist/
+
+# IDE working files
+*.swp
+*.swo
+
+# Spring Boot dev tools
+.spring-boot-devtools.properties
