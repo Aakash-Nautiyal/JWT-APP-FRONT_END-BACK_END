@@ -159,4 +159,3 @@ See the [LICENSE](LICENSE) file for more details.
 
 Made with 💙 by **Aakash Nautiyal**
 
-> “Bringing secure authentication to your fingertips.”
