@@ -1,0 +1,69 @@
+{
+  "hello": {
+    "title": "欢迎来到JWT身份验证页面",
+    "madeBy": "由Aakash Nautiyal制作",
+    "login": "登录",
+    "register": "注册",
+    "forgotPassword": "忘记密码？"
+  },
+  "admin": {
+    "title": "欢迎回来，管理员...！",
+    "backToHome": "返回主页"
+  },
+  "forgot": {
+    "title": "忘记密码？",
+    "username": "用户名",
+    "sendOtp": "发送验证码",
+    "backToHome": "返回主页",
+    "usernameRequired": "用户名是必填项",
+    "otpError": "发送验证码失败。用户名不正确。",
+    "otpFail": "发送验证码失败。"
+  },
+  "login": {
+    "title": "登录",
+    "username": "用户名",
+    "password": "密码",
+    "submit": "登录",
+    "backToHome": "返回主页",
+    "usernameRequired": "用户名是必填项",
+    "passwordRequired": "密码是必填项",
+    "success": "登录成功！",
+    "fail": "登录失败。请再试一次。"
+  },
+  "register": {
+    "title": "注册",
+    "username": "用户名",
+    "password": "密码",
+    "email": "电子邮件",
+    "submit": "注册",
+    "backToHome": "返回主页",
+    "usernameRequired": "用户名是必填项",
+    "usernameInvalid": "不能使用特殊字符",
+    "usernameLength": "请增加长度",
+    "passwordRequired": "密码是必填项",
+    "passwordLength": "请增加长度",
+    "emailRequired": "电子邮件是必填项",
+    "emailInvalid": "电子邮件格式无效",
+    "userExists": "用户已存在",
+    "success": "注册成功完成。",
+    "fail": "注册失败"
+  },
+  "reset": {
+    "title": "重置密码",
+    "otp": "验证码",
+    "newPassword": "新密码",
+    "submit": "重置密码",
+    "backToHome": "返回主页",
+    "otpRequired": "需要验证码",
+    "newPasswordRequired": "需要新密码",
+    "newPasswordLength": "新密码至少需要6个字符",
+    "otpSent": "验证码已发送到您的邮箱。",
+    "success": "密码重置成功",
+    "fail": "密码重置失败"
+  },
+  "user": {
+    "loginSuccess": "登录成功！",
+    "backToHome": "返回首页",
+    "welcome": "欢迎回来...！{{username}}"
+  }
+}

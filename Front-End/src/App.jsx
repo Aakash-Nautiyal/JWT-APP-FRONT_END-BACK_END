@@ -13,6 +13,7 @@ import User from "./Components/User";
 import Admin from "./Components/Admin";
 import ForgotPassword from "./Components/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword";
+import LanguageSelector from "./Components/LanguageSelector";
 
 
 // eslint-disable-next-line react/prop-types
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <Router>
+       <LanguageSelector />
    
         <Routes>
           <Route path="/" element={<Hello />} />

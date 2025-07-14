@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../Styles/ResetPassword.css"; // Ensure you create this CSS file similar to Register.css
+import "../Styles/ResetPassword.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const { username } = location.state || {};
   const navigate = useNavigate();
@@ -20,47 +21,43 @@ const ResetPassword = () => {
   };
 
   useEffect(() => {
-   if (username === undefined) navigate("/forgot-password");
-    
-        toast.success("OTP has been sent to your email.");
-    },[]);
+    if (username === undefined) {
+      navigate("/forgot-password");
+    } else {
+      toast.success(t("reset.otpSent"));
+    }
+  }, []);
+
   const validationSchema = Yup.object({
-    otp: Yup.string().required("OTP is required"),
+    otp: Yup.string().required(t("reset.otpRequired")),
     newPassword: Yup.string()
-      .required("New password is required")
-      .min(6, "New password must be at least 6 characters long"),
+      .required(t("reset.newPasswordRequired"))
+      .min(6, t("reset.newPasswordLength")),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
-
-    console.log(username,
-      "otp:", values.otp,
-      "newPassword:", values.newPassword);
     try {
-      const response = await axios.post(
-        "http://localhost:8081/reset-password",
-        {
-          username,
-          otp: values.otp,
-          newPassword: values.newPassword,
-        }
-      );
+      const response = await axios.post("http://localhost:8081/reset-password", {
+        username,
+        otp: values.otp,
+        newPassword: values.newPassword,
+      });
+
       if (response.data === "Password reset successfully") {
-        toast.success(response.data);
+        toast.success(t("reset.success"));
       } else {
         toast.error(response.data);
       }
     } catch (error) {
-      toast.error(
-        error.response ? error.response.data : "Failed to reset password."
-      );
+      toast.error(error.response ? error.response.data : t("reset.fail"));
     } finally {
       setSubmitting(false);
     }
   };
-   const handleBackToHome = () => {
-     navigate("/");
-   };
+
+  const handleBackToHome = () => {
+    navigate("/");
+  };
 
   return (
     <motion.div
@@ -70,7 +67,7 @@ const ResetPassword = () => {
       transition={{ duration: 0.5 }}
       className="container"
     >
-      <h2>Reset Password</h2>
+      <h2>{t("reset.title")}</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -79,12 +76,12 @@ const ResetPassword = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="otp">OTP</label>
+              <label htmlFor="otp">{t("reset.otp")}</label>
               <Field name="otp" type="text" />
               <ErrorMessage name="otp" component="div" className="error" />
             </div>
             <div>
-              <label htmlFor="newPassword">New Password</label>
+              <label htmlFor="newPassword">{t("reset.newPassword")}</label>
               <Field name="newPassword" type="password" />
               <ErrorMessage
                 name="newPassword"
@@ -92,15 +89,19 @@ const ResetPassword = () => {
                 className="error"
               />
             </div>
-            <button type="submit" disabled={isSubmitting} className="reset-button">
-              Reset Password
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="reset-button"
+            >
+              {t("reset.submit")}
             </button>
             <button
               type="button"
               onClick={handleBackToHome}
               className="back-to-home-button"
             >
-              Back to Home
+              {t("reset.backToHome")}
             </button>
           </Form>
         )}

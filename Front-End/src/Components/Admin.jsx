@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { AiFillHome } from "react-icons/ai";
 import "../Styles/Admin.css";
-// import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 // Function to decode JWT
 const decodeJWT = (token) => {
@@ -29,9 +29,30 @@ const decodeJWT = (token) => {
 
 const Admin = () => {
   const [username, setUsername] = useState("");
+  const { t, i18n } = useTranslation();
+  const currentLang = useRef(i18n.language);
+  const typedTimeouts = useRef([]);
+
+  const typeText = (text) => {
+    const typedText = document.querySelector(".typed-text");
+    if (!typedText) return;
+
+    // Clear any previous timeouts
+    typedTimeouts.current.forEach((timeout) => clearTimeout(timeout));
+    typedTimeouts.current = [];
+
+    typedText.textContent = "";
+    const textArray = text.split("");
+
+    textArray.forEach((char, index) => {
+      const timeout = setTimeout(() => {
+        typedText.textContent += char;
+      }, index * 100);
+      typedTimeouts.current.push(timeout);
+    });
+  };
 
   useEffect(() => {
-    console.log(username);
     toast.success("Login successful!");
     const token = localStorage.getItem("jwtToken");
     if (token) {
@@ -40,17 +61,18 @@ const Admin = () => {
         setUsername(decodedToken.sub);
       }
     }
-
-    // Typing animation
-    const typedText = document.querySelector(".typed-text");
-    const textArray = typedText.textContent.split("");
-    typedText.textContent = "";
-    textArray.forEach((char, index) => {
-      setTimeout(() => {
-        typedText.textContent += char;
-      }, index * 100);
-    });
   }, []);
+
+  useEffect(() => {
+    if (!i18n.isInitialized) return;
+
+    const newLang = i18n.language;
+
+    if (currentLang.current !== newLang || typedTimeouts.current.length === 0) {
+      currentLang.current = newLang;
+      typeText(t("admin.title"));
+    }
+  }, [i18n.language, t]);
 
   return (
     <motion.div
@@ -64,17 +86,19 @@ const Admin = () => {
           <li>
             <Link to="/hello">
               <AiFillHome style={{ marginRight: "8px" }} />
-              Go back to home
+              {t("admin.backToHome")}
             </Link>
           </li>
         </ul>
       </nav>
+
       <div className="user-container">
         <div className="smiley-container">
           <p className="smiley-text">^_____^</p>
         </div>
-        <h1 className="typed-text"> Welcome back Admin...!</h1>
+        <h1 className="typed-text">{/* animated text */}</h1>
       </div>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

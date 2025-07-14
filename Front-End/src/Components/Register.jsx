@@ -7,30 +7,32 @@ import "../Styles/Register.css";
 import "../Styles/ToastStyles.css";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const initialValues = {
     username: "",
     password: "",
     email: "",
   };
 
-  const navigate = useNavigate();
-
   const validationSchema = Yup.object({
     username: Yup.string()
-      .required("Username is required")
-      .matches(/^[a-zA-Z0-9_]+$/, "cannot use special characters")
-      .test("len", "ncrease the length", (val) => val.length >= 3),
+      .required(t("register.usernameRequired"))
+      .matches(/^[a-zA-Z0-9_]+$/, t("register.usernameInvalid"))
+      .test("len", t("register.usernameLength"), (val) => val.length >= 3),
     password: Yup.string()
-      .required("Password is required")
-      .min(6, "Increase the length"),
+      .required(t("register.passwordRequired"))
+      .min(6, t("register.passwordLength")),
     email: Yup.string()
       .matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        "Invalid email format"
+        t("register.emailInvalid")
       )
-      .required("Email is required"),
+      .required(t("register.emailRequired")),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -40,18 +42,18 @@ const Register = () => {
         values
       );
       if (response.data === "User already exists") {
-        toast.error("User already exists");
-      }
-      else {
-        toast.success("Registration successfully completed."); // Display success message from server
+        toast.error(t("register.userExists"));
+      } else {
+        toast.success(t("register.success"));
         console.log(response.data);
       }
     } catch (error) {
-      toast.error(error.response ? error.response.data : "Registration failed");
+      toast.error(error.response ? error.response.data : t("register.fail"));
     } finally {
       setSubmitting(false);
     }
   };
+
   const handleBackToHome = () => {
     navigate("/");
   };
@@ -64,7 +66,7 @@ const Register = () => {
       transition={{ duration: 0.5 }}
       className="container"
     >
-      <h2>Register</h2>
+      <h2>{t("register.title")}</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -73,37 +75,42 @@ const Register = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">{t("register.username")}</label>
               <Field name="username" type="text" />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
+
             <div>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{t("register.password")}</label>
               <Field name="password" type="password" />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
+
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t("register.email")}</label>
               <Field name="email" type="email" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
+
             <button
               type="submit"
               disabled={isSubmitting}
               className="register-button"
             >
-              Register
+              {t("register.submit")}
             </button>
+
             <button
               type="button"
               onClick={handleBackToHome}
               className="back-to-home-button"
             >
-              Back to Home
+              {t("register.backToHome")}
             </button>
           </Form>
         )}
       </Formik>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

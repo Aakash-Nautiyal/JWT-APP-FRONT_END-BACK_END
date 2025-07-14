@@ -6,20 +6,21 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
-import "../Styles/ForgotPassword.css"; // Ensure you create this CSS file similar to Register.css
+import "../Styles/ForgotPassword.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-// eslint-disable-next-line react/prop-types
 const ForgotPassword = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const initialValues = {
     username: "",
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string().required(t("forgot.usernameRequired")),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -28,17 +29,16 @@ const ForgotPassword = () => {
       const response = await axios.post(
         `http://localhost:8081/forgot-password/${values.username}`
       );
-      console.log("\n\nRESPONSE DATA ", response.data);
+
       if (response.data === true) {
-        
         navigate("/reset-password", {
           state: { username: values.username },
         });
       } else {
-        toast.error("Failed to send OTP. Username is incorrect.");
+        toast.error(t("forgot.otpError"));
       }
     } catch (error) {
-      toast.error(error.response ? error.response.data : "Failed to send OTP.");
+      toast.error(error.response ? error.response.data : t("forgot.otpFail"));
     } finally {
       setSubmitting(false);
       setIsLoading(false);
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
       transition={{ duration: 0.5 }}
       className="container"
     >
-      <h2>Forgot Password</h2>
+      <h2>{t("forgot.title")}</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -66,12 +66,12 @@ const ForgotPassword = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">{t("forgot.username")}</label>
               <Field name="username" type="text" />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
             <button type="submit" disabled={isSubmitting} className="OTP-button">
-              Send OTP
+              {t("forgot.sendOtp")}
             </button>
 
             <button
@@ -79,7 +79,7 @@ const ForgotPassword = () => {
               onClick={handleBackToHome}
               className="back-to-home-button"
             >
-              Back to Home
+              {t("forgot.backToHome")}
             </button>
           </Form>
         )}

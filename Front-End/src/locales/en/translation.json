@@ -1,0 +1,69 @@
+{
+  "hello": {
+    "title": "Welcome to the JWT authentication page",
+    "madeBy": "made by Aakash Nautiyal",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password"
+  },
+  "admin": {
+    "title": "Welcome back Admin...!",
+    "backToHome": "Go back to home"
+  },
+  "forgot": {
+    "title": "Forgot Password",
+    "username": "Username",
+    "sendOtp": "Send OTP",
+    "backToHome": "Back to Home",
+    "usernameRequired": "Username is required",
+    "otpError": "Failed to send OTP. Username is incorrect.",
+    "otpFail": "Failed to send OTP."
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "backToHome": "Back to Home",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "success": "Login successful!",
+    "fail": "Login failed. Please try again."
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "submit": "Register",
+    "backToHome": "Back to Home",
+    "usernameRequired": "Username is required",
+    "usernameInvalid": "Cannot use special characters",
+    "usernameLength": "Increase the length",
+    "passwordRequired": "Password is required",
+    "passwordLength": "Increase the length",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "userExists": "User already exists",
+    "success": "Registration successfully completed.",
+    "fail": "Registration failed"
+  },
+  "reset": {
+    "title": "Reset Password",
+    "otp": "OTP",
+    "newPassword": "New Password",
+    "submit": "Reset Password",
+    "backToHome": "Back to Home",
+    "otpRequired": "OTP is required",
+    "newPasswordRequired": "New password is required",
+    "newPasswordLength": "New password must be at least 6 characters long",
+    "otpSent": "OTP has been sent to your email.",
+    "success": "Password reset successfully",
+    "fail": "Failed to reset password."
+  },
+  "user": {
+    "loginSuccess": "Login successful!",
+    "backToHome": "Go back to home",
+    "welcome": "Welcome back...! {{username}}"
+  }
+}

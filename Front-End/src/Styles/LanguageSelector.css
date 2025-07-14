@@ -1,0 +1,54 @@
+.language-selector {
+    position: fixed;
+    top: 0%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 20px 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.language-selector:hover {
+    background: rgba(0, 0, 0, 0.9);
+    /* transform: translateX(5px); */
+    /* box-shadow: 2px 2px 10px #0ff; */
+}
+
+.globe-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.language-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.language-select {
+
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: white;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    /* semi-transparent */
+    transition: background-color 0.2s ease;
+}
+
+.language-select:hover {
+
+    background-color: #f0f0f0;
+    background: rgba(0, 0, 0, 0.85);
+
+}

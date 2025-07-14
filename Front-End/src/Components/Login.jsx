@@ -6,9 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Login.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const initialValues = {
     username: "",
@@ -16,8 +18,8 @@ const Login = () => {
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    username: Yup.string().required(t("login.usernameRequired")),
+    password: Yup.string().required(t("login.passwordRequired")),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -25,14 +27,12 @@ const Login = () => {
       const response = await axios.post("http://localhost:8081/signin", values);
       const { jwtToken, username, roles } = response.data;
 
-      // Store the JWT token in local storage
       localStorage.setItem("jwtToken", jwtToken);
       localStorage.setItem("username", username);
       localStorage.setItem("roles", JSON.stringify(roles));
 
-      toast.success("Login successful!");
+      toast.success(t("login.success"));
 
-      // Redirect based on role
       if (roles.includes("ROLE_ADMIN")) {
         navigate("/admin");
       } else if (roles.includes("ROLE_USER")) {
@@ -42,7 +42,7 @@ const Login = () => {
       }
     } catch (error) {
       toast.error(
-        error.response?.data?.message || "Login failed. Please try again."
+        error.response?.data?.message || t("login.fail")
       );
     } finally {
       setSubmitting(false);
@@ -61,7 +61,7 @@ const Login = () => {
       transition={{ duration: 0.5 }}
       className="container"
     >
-      <h2>Login</h2>
+      <h2>{t("login.title")}</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -70,32 +70,36 @@ const Login = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">{t("login.username")}</label>
               <Field name="username" type="text" />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
+
             <div>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{t("login.password")}</label>
               <Field name="password" type="password" />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
+
             <button
               type="submit"
               disabled={isSubmitting}
               className="submit-button"
             >
-              Login
+              {t("login.submit")}
             </button>
+
             <button
               type="button"
               onClick={handleBackToHome}
               className="back-to-home-button"
             >
-              Back to Home
+              {t("login.backToHome")}
             </button>
           </Form>
         )}
       </Formik>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

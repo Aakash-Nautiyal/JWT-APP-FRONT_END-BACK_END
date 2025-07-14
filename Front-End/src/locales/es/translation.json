@@ -1,0 +1,69 @@
+{
+  "hello": {
+    "title": "Bienvenido a la página de autenticación JWT",
+    "madeBy": "hecho por Aakash Nautiyal",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?"
+  },
+  "admin": {
+    "title": "¡Bienvenido de nuevo, administrador!",
+    "backToHome": "Volver a la página principal"
+  },
+  "forgot": {
+    "title": "¿Olvidaste tu contraseña?",
+    "username": "Nombre de usuario",
+    "sendOtp": "Enviar OTP",
+    "backToHome": "Volver a la página principal",
+    "usernameRequired": "El nombre de usuario es obligatorio",
+    "otpError": "Error al enviar el OTP. El nombre de usuario es incorrecto.",
+    "otpFail": "Error al enviar el OTP."
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "backToHome": "Volver a la página principal",
+    "usernameRequired": "El nombre de usuario es obligatorio",
+    "passwordRequired": "La contraseña es obligatoria",
+    "success": "¡Inicio de sesión exitoso!",
+    "fail": "Error al iniciar sesión. Inténtalo de nuevo."
+  },
+  "register": {
+    "title": "Registrarse",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "email": "Correo electrónico",
+    "submit": "Registrarse",
+    "backToHome": "Volver a la página principal",
+    "usernameRequired": "Se requiere nombre de usuario",
+    "usernameInvalid": "No se permiten caracteres especiales",
+    "usernameLength": "Aumenta la longitud",
+    "passwordRequired": "Se requiere contraseña",
+    "passwordLength": "Aumenta la longitud",
+    "emailRequired": "Se requiere correo electrónico",
+    "emailInvalid": "Formato de correo no válido",
+    "userExists": "El usuario ya existe",
+    "success": "Registro completado con éxito.",
+    "fail": "Error al registrarse"
+  },
+  "reset": {
+    "title": "Restablecer contraseña",
+    "otp": "OTP",
+    "newPassword": "Nueva contraseña",
+    "submit": "Restablecer contraseña",
+    "backToHome": "Volver a la página principal",
+    "otpRequired": "Se requiere OTP",
+    "newPasswordRequired": "Se requiere nueva contraseña",
+    "newPasswordLength": "La nueva contraseña debe tener al menos 6 caracteres",
+    "otpSent": "El OTP ha sido enviado a tu correo electrónico.",
+    "success": "Contraseña restablecida con éxito",
+    "fail": "Error al restablecer la contraseña"
+  },
+  "user": {
+    "loginSuccess": "¡Inicio de sesión exitoso!",
+    "backToHome": "Volver al inicio",
+    "welcome": "¡Bienvenido de nuevo...! {{username}}"
+  }
+}
